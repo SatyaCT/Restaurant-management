@@ -156,7 +156,7 @@ function addItem(name, price) {
     document.getElementById("total").innerText = total;
 
     // Save to Firebase
-    db.collection("orders").add({
+    app.collection("orders").add({
         item: name,
         price: price,
         time: new Date()
@@ -167,4 +167,5 @@ function addItem(name, price) {
 
 </body>
 </html>
+
 
