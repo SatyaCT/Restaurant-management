@@ -70,13 +70,12 @@
         }
     </style>
 </head>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-  // Your web app's Firebase configuration
+<script>
+  // Your Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyBRSk5sHZLSOB7un9ViiaBmioUekn8lfH8",
     authDomain: "restaurant-management-df00e.firebaseapp.com",
@@ -87,8 +86,13 @@
   };
 
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
+
+  // 🔥 THIS LINE IS VERY IMPORTANT
+  const db = firebase.firestore();
 </script>
+
+
 <body>
 
 <header>
@@ -156,7 +160,7 @@ function addItem(name, price) {
     document.getElementById("total").innerText = total;
 
     // Save to Firebase
-    app.collection("orders").add({
+    db.collection("orders").add({
         item: name,
         price: price,
         time: new Date()
@@ -167,5 +171,6 @@ function addItem(name, price) {
 
 </body>
 </html>
+
 
 
