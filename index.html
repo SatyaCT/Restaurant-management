@@ -70,6 +70,25 @@
         }
     </style>
 </head>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBRSk5sHZLSOB7un9ViiaBmioUekn8lfH8",
+    authDomain: "restaurant-management-df00e.firebaseapp.com",
+    projectId: "restaurant-management-df00e",
+    storageBucket: "restaurant-management-df00e.firebasestorage.app",
+    messagingSenderId: "1094854335392",
+    appId: "1:1094854335392:web:38aad6b93ae6a6a7cf62c5"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
 <body>
 
 <header>
@@ -124,28 +143,28 @@
 </div>
 
 <script>
-    let total = 0;
+let total = 0;
 
-    function addItem(name, price) {
-        let table = document.getElementById("orderList");
+function addItem(name, price) {
+    let table = document.getElementById("orderList");
 
-        let row = table.insertRow();
-        let itemCell = row.insertCell(0);
-        let priceCell = row.insertCell(1);
+    let row = table.insertRow();
+    row.insertCell(0).innerHTML = name;
+    row.insertCell(1).innerHTML = "₹" + price;
 
-        itemCell.innerHTML = name;
-        priceCell.innerHTML = "₹" + price;
+    total += price;
+    document.getElementById("total").innerText = total;
 
-        total += price;
-        document.getElementById("total").innerText = total;
-    }
-
-    function clearOrder() {
-        document.getElementById("orderList").innerHTML = "";
-        total = 0;
-        document.getElementById("total").innerText = total;
-    }
+    // Save to Firebase
+    db.collection("orders").add({
+        item: name,
+        price: price,
+        time: new Date()
+    });
+}
 </script>
+
 
 </body>
 </html>
+
