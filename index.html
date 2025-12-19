@@ -159,7 +159,7 @@ function addItem(name, price) {
     total += price;
     document.getElementById("total").innerText = total;
 
-    // Save to Firebase
+    // Save to Firestore
     db.collection("orders").add({
         item: name,
         price: price,
@@ -169,8 +169,10 @@ function addItem(name, price) {
 </script>
 
 
+
 </body>
 </html>
+
 
 
 
