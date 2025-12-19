@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Restaurant Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #c0392b;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+
+        .menu, .order {
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            width: 50%;
+        }
+
+        h2 {
+            color: #c0392b;
+        }
+
+        button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background: #219150;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .total {
+            font-size: 18px;
+            margin-top: 15px;
+        }
+
+        .clear {
+            background: #e74c3c;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🍽 Restaurant Management System</h1>
+</header>
+
+<div class="container">
+    
+    <!-- MENU -->
+    <div class="menu">
+        <h2>Menu</h2>
+
+        <p>🍕 Pizza - ₹200 
+            <button onclick="addItem('Pizza', 200)">Add</button>
+        </p>
+
+        <p>🍔 Burger - ₹120 
+            <button onclick="addItem('Burger', 120)">Add</button>
+        </p>
+
+        <p>🍝 Pasta - ₹180 
+            <button onclick="addItem('Pasta', 180)">Add</button>
+        </p>
+
+        <p>🥤 Cold Drink - ₹50 
+            <button onclick="addItem('Cold Drink', 50)">Add</button>
+        </p>
+    </div>
+
+    <!-- ORDER -->
+    <div class="order">
+        <h2>Current Order</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="orderList">
+            </tbody>
+        </table>
+
+        <div class="total">
+            Total: ₹<span id="total">0</span>
+        </div>
+
+        <button class="clear" onclick="clearOrder()">Clear Order</button>
+    </div>
+
+</div>
+
+<script>
+    let total = 0;
+
+    function addItem(name, price) {
+        let table = document.getElementById("orderList");
+
+        let row = table.insertRow();
+        let itemCell = row.insertCell(0);
+        let priceCell = row.insertCell(1);
+
+        itemCell.innerHTML = name;
+        priceCell.innerHTML = "₹" + price;
+
+        total += price;
+        document.getElementById("total").innerText = total;
+    }
+
+    function clearOrder() {
+        document.getElementById("orderList").innerHTML = "";
+        total = 0;
+        document.getElementById("total").innerText = total;
+    }
+</script>
+
+</body>
+</html>
